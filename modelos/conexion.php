@@ -2,7 +2,7 @@
 
 class Conexion{
 
-	static public function conectar(){
+	static public function conectar1(){
 
 		#PDO("nombre del servidor; nombre de la base de datos", "usuario", "contraseña")
 
@@ -17,13 +17,13 @@ class Conexion{
 	}
 
 
-	static public function conectar1(){
+	static public function conectar(){
 
 		#PDO("nombre del servidor; nombre de la base de datos", "usuario", "contraseña")
 
-		$link = new PDO("mysql:host=localhost;dbname=id13563802_funcacion", 
-			            "id13563802_admin", 
-			            "*7d-|&Ee=8CmmD|l");
+		$link = new PDO("mysql:host=nemorisgames.com;dbname=id13563802_funcacion", 
+			            "nemorisg_fundacionsemilla", 
+			            "_Semilla123,.");
 
 		$link->exec("set names utf8");
 
