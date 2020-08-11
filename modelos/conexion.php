@@ -21,8 +21,8 @@ class Conexion{
 
 		#PDO("nombre del servidor; nombre de la base de datos", "usuario", "contraseña")
 
-		$link = new PDO("mysql:host=nemorisgames.com;dbname=nemorisg_fundacionsemilla", 
-			            "nemorisg_fundacionsemilla", 
+		$link = new PDO("mysql:host=nemorisgames.com:3306;dbname=nemorisg_fundacionsemilla", 
+			            "nemorisg_semilla", 
 			            "_Semilla123,.");
 
 		$link->exec("set names utf8");
