@@ -21,7 +21,7 @@ class Conexion{
 
 		#PDO("nombre del servidor; nombre de la base de datos", "usuario", "contraseña")
 
-		$link = new PDO("mysql:host=nemorisgames.com;dbname=id13563802_funcacion", 
+		$link = new PDO("mysql:host=nemorisgames.com;dbname=nemorisg_fundacionsemilla", 
 			            "nemorisg_fundacionsemilla", 
 			            "_Semilla123,.");
 
