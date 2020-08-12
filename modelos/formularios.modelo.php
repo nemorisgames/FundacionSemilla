@@ -9,18 +9,19 @@ class ModeloFormularios{
 	=============================================*/
 
 	static public function mdlRegistro($tabla, $datos){
+//TODO: revisar que el usuario no exista
+		
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(email, pass, name, rut, school, comuna, instagram, name_avatar, img_avatar) VALUES (:email, :pass, :name, :rut, :school, :comuna, :instagram, :name_avatar, :img_avatar)");
 
-		#statement: declaración
-
-		#prepare() Prepara una sentencia SQL para ser ejecutada por el método PDOStatement::execute(). La sentencia SQL puede contener cero o más marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada. Ayuda a prevenir inyecciones SQL eliminando la necesidad de entrecomillar manualmente los parámetros.
-
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, email, password) VALUES (:nombre, :email, :password)");
-
-
-
-		$stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
-		$stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":pass", $datos["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":name", $datos["name"], PDO::PARAM_STR);
+		$stmt->bindParam(":rut", $datos["rut"], PDO::PARAM_STR);
+		$stmt->bindParam(":school", $datos["liceo"], PDO::PARAM_STR);
+		$stmt->bindParam(":comuna", $datos["comuna"], PDO::PARAM_STR);
+		$stmt->bindParam(":instagram", $datos["insta"], PDO::PARAM_STR);
+		$stmt->bindParam(":name_avatar", $datos["avatar"], PDO::PARAM_STR);
+		$stmt->bindParam(":img_avatar", $datos["imgavatar"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -32,14 +33,32 @@ class ModeloFormularios{
 
 		}
 
-		$stmt->close();
-
-		$stmt = null;	
-
 	}
 
 
+/*=============================================
+	LOGIN
+	=============================================*/
 
+	static public function mdlLogin($tabla, $datos){
+
+		#statement: declaración
+
+		#prepare() Prepara una sentencia SQL para ser ejecutada por el método PDOStatement::execute(). La sentencia SQL puede contener cero o más marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada. Ayuda a prevenir inyecciones SQL eliminando la necesidad de entrecomillar manualmente los parámetros.
+
+		$stmt = Conexion::conectar()->prepare("SELECT id_user FROM $tabla WHERE rut = :rut AND pass = :pass");
+		$stmt->bindParam(":rut", $datos["rut"], PDO::PARAM_STR);
+		$stmt->bindParam(":pass", $datos["pass"], PDO::PARAM_STR);
+
+		$stmt->execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt->close();
+
+		$stmt = null;	
+		
+	}
 
 
 	static public function mdlPosteo($tabla, $datos){

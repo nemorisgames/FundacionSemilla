@@ -6,27 +6,43 @@ class ControladorFormularios{
 	Registro
 	=============================================*/
 
-	static public function ctrRegistro(){
+	static public function ctrRegistro($fmail, $fpass, $fname, $frut, $fliceo, $fcomuna, $finsta, $favatar, $fimgavatar){
 
-		if(isset($_POST["registroNombre"])){
+			$tabla = "user";
 
-			$tabla = "registros";
-
-			$datos = array("nombre" => $_POST["registroNombre"],
-				           "email" => $_POST["registroEmail"],
-						   "password" => $_POST["registroPassword"]
-						
-						
-						
-						
+			$datos = array("email" => $fmail,
+						   "password" => $fpass,
+				           "name" => $fname,
+				           "rut" => $frut,
+				           "liceo" => $fliceo,
+				           "comuna" => $fcomuna,
+				           "insta" => $finsta,
+				           "avatar" => $favatar,
+				           "imgavatar" => $fimgavatar
 						);
 
 			$respuesta = ModeloFormularios::mdlRegistro($tabla, $datos);
 
 			return $respuesta;
+		
 
-		}
+	}
+	
+	/*=============================================
+	Login
+	=============================================*/
 
+	static public function ctrLogin($user, $pass){
+
+		$tabla = "user";
+
+		$datos = array("rut" => $user,
+					   "pass" => $pass
+					);
+
+		$respuesta = ModeloFormularios::mdlLogin($tabla, $datos);
+
+		return $respuesta;
 	}
 
 
